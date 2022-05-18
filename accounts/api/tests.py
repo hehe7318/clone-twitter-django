@@ -16,7 +16,7 @@ class AccountApiTests(TestCase):
         self.client = APIClient()
         self.user = self.createUser(
             username='admin',
-            email='admin@jiuzhang.com',
+            email='xuanqihe@test.com',
             password='correct password',
         )
 
@@ -52,7 +52,7 @@ class AccountApiTests(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertNotEqual(response.data['user'], None)
-        self.assertEqual(response.data['user']['email'], 'admin@jiuzhang.com')
+        self.assertEqual(response.data['user']['email'], 'xuanqihe@test.com')
         # 验证已经登录了
         response = self.client.get(LOGIN_STATUS_URL)
         self.assertEqual(response.data['has_logged_in'], True)
@@ -81,7 +81,7 @@ class AccountApiTests(TestCase):
     def test_signup(self):
         data = {
             'username': 'someone',
-            'email': 'someone@jiuzhang.com',
+            'email': 'xuanqi@test.com',
             'password': 'any password',
         }
         # 测试 get 请求失败
@@ -90,7 +90,7 @@ class AccountApiTests(TestCase):
 
         # 测试错误的邮箱
         response = self.client.post(SIGNUP_URL, {
-            'username': 'someone',
+            'username': 'xuanqi',
             'email': 'not a correct email',
             'password': 'any password'
         })
@@ -99,8 +99,8 @@ class AccountApiTests(TestCase):
 
         # 测试密码太短
         response = self.client.post(SIGNUP_URL, {
-            'username': 'someone',
-            'email': 'someone@jiuzhang.com',
+            'username': 'xuanqi',
+            'email': 'xuanqi@test.com',
             'password': '123',
         })
         # print(response.data)
@@ -108,8 +108,8 @@ class AccountApiTests(TestCase):
 
         # 测试用户名太长
         response = self.client.post(SIGNUP_URL, {
-            'username': 'username is tooooooooooooooooo loooooooong',
-            'email': 'someone@jiuzhang.com',
+            'username': 'username is tooooooooooooo loooooooooooooooong',
+            'email': 'xuanqi@test.com',
             'password': 'any password',
         })
         # print(response.data)
