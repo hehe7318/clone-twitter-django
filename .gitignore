@@ -1,8 +1,9 @@
 *.box
 .vagrant
 Vagrantfile
+.pycharm_helpers/
 .idea
-.pycharm_helpers
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
